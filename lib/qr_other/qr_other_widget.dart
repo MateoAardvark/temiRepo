@@ -26,8 +26,7 @@ class _QrOtherWidgetState extends State<QrOtherWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(milliseconds: 15000));
-
-      context.goNamed('Start');
+      context.safePop();
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));

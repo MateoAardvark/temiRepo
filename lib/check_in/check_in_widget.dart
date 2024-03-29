@@ -599,8 +599,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
 
                               await Future.delayed(
                                   const Duration(milliseconds: 15000));
-
-                              context.goNamed('Start');
+                              context.safePop();
                             },
                             text: 'Submit',
                             options: FFButtonOptions(

@@ -451,8 +451,7 @@ class _RoomInquiryWidgetState extends State<RoomInquiryWidget> {
                               });
                               await Future.delayed(
                                   const Duration(milliseconds: 15000));
-
-                              context.goNamed('Start');
+                              context.safePop();
 
                               setState(() {});
                             },

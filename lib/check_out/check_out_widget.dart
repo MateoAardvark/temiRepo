@@ -323,8 +323,7 @@ class _CheckOutWidgetState extends State<CheckOutWidget> {
                             });
                             await Future.delayed(
                                 const Duration(milliseconds: 15000));
-
-                            context.goNamed('Start');
+                            context.safePop();
 
                             setState(() {});
                           },
