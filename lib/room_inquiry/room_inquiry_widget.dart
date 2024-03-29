@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'room_inquiry_model.dart';
 export 'room_inquiry_model.dart';
@@ -25,6 +26,13 @@ class _RoomInquiryWidgetState extends State<RoomInquiryWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RoomInquiryModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 120000));
+
+      context.goNamed('Home');
+    });
 
     _model.nameController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
@@ -449,9 +457,6 @@ class _RoomInquiryWidgetState extends State<RoomInquiryWidget> {
                                 _model.roomController1?.clear();
                                 _model.roomController2?.clear();
                               });
-                              await Future.delayed(
-                                  const Duration(milliseconds: 15000));
-                              context.safePop();
 
                               setState(() {});
                             },

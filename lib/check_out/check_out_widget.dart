@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'check_out_model.dart';
 export 'check_out_model.dart';
@@ -25,6 +26,13 @@ class _CheckOutWidgetState extends State<CheckOutWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CheckOutModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 120000));
+
+      context.goNamed('Home');
+    });
 
     _model.nameController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
@@ -321,9 +329,6 @@ class _CheckOutWidgetState extends State<CheckOutWidget> {
                               _model.nameController?.clear();
                               _model.roomController?.clear();
                             });
-                            await Future.delayed(
-                                const Duration(milliseconds: 15000));
-                            context.safePop();
 
                             setState(() {});
                           },

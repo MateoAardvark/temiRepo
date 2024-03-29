@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'check_in_model.dart';
 export 'check_in_model.dart';
@@ -27,6 +28,13 @@ class _CheckInWidgetState extends State<CheckInWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CheckInModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 120000));
+
+      context.goNamed('Home');
+    });
 
     _model.nombreController ??= TextEditingController();
     _model.nombreFocusNode ??= FocusNode();
@@ -596,10 +604,6 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                   );
                                 },
                               ).then((value) => safeSetState(() {}));
-
-                              await Future.delayed(
-                                  const Duration(milliseconds: 15000));
-                              context.safePop();
                             },
                             text: 'Submit',
                             options: FFButtonOptions(
